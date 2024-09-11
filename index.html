@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Distribution - Royal Theme</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f0f8ff;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            max-width: 900px;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #003366;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        /* Bubble animation */
+        .bubble {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 80, 160, 0.2);
+            border-radius: 50%;
+            animation: bubbleMove 15s linear infinite;
+            z-index: 1;
+        }
+
+        .bubble:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            animation-duration: 20s;
+            left: 25%;
+        }
+
+        .bubble:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            animation-duration: 18s;
+            left: 50%;
+        }
+
+        .bubble:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            animation-duration: 25s;
+            left: 75%;
+        }
+
+        .bubble:nth-child(5) {
+            width: 120px;
+            height: 120px;
+            animation-duration: 28s;
+            left: 90%;
+        }
+
+        @keyframes bubbleMove {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+            }
+            100% {
+                bottom: 100vh;
+                transform: translateX(-50px);
+            }
+        }
+
+        /* Media Query */
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Bubbles for background -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <h1>Problem Distribution</h1>
+
+        <!-- Pie Chart -->
+        <canvas id="problemChart"></canvas>
+
+        <!-- Footer Section -->
+   
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('problemChart').getContext('2d');
+        const problemChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Problem A (50%)', 'Problem B (33%)', 'Problem C (17%)'],
+                datasets: [{
+                    label: 'Problem Distribution',
+                    data: [50, 33, 17],
+                    backgroundColor: [
+                        '#003366',   // Royal Dark Blue for Problem A
+                        '#6699cc',   // Light Royal Blue for Problem B
+                        '#99c2eb'    // Pale Blue for Problem C
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    hoverOffset: 20
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#003366',
+                            font: {
+                                size: 16,
+                                family: 'Georgia'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#333',
+                        bodyColor: '#fff',
+                        bodyFont: {
+                            size: 16,
+                            family: 'Georgia'
+                        },
+                        padding: 12
+                    }
+                },
+                animation: {
+                    animateScale: true
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
